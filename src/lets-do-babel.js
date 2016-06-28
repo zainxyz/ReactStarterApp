@@ -1,7 +1,11 @@
-class Jack extends Component {
-	render() {
+var React = require('react');
+
+var Jack = React.createClass({
+	render: function() {
 		return (
-			<div>Jack Loves you!</div>
+			<div className="Jack">Jack World Loves You!</div>
 		);
 	}
-}
+});
+
+module.exports = Jack;

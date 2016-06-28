@@ -1,21 +1,32 @@
 const path = require('path'),
-    webpack = require('webpack');
+    webpack = require('webpack'),
+    serverPort = 8008;
+
+function getEntrySources(sources) {
+    if (process.env.NODE_ENV !== 'production') {
+        sources.push('webpack-dev-server/client?http://localhost:' + serverPort);
+        sources.push('webpack/hot/only-dev-server');
+    }
+
+    return sources;
+}
 
 module.exports = {
-    entry: './src/main.js',
+    entry: {
+        App: getEntrySources([
+            './src/index.js'
+        ])
+    },
     output: {
         path: path.join(__dirname, 'dist'),
-        publicPath: '/',
-        filename: 'app.js'
+        publicPath: 'http://localhost:8008/',
+        filename: 'public/app.js'
     },
     module: {
         loaders: [{
-            exclude: /node_modules/,
             test: /\.js$/,
-            loader: 'babel',
-            query: {
-                presets: ['react', 'es2015', 'stage-1']
-            }
+            loaders: ['react-hot', 'babel'],
+            exclude: /node_modules/
         }, {
             test: /\.scss$/,
             loaders: ['style', 'css', 'sass']
@@ -31,6 +42,11 @@ module.exports = {
         }]
     },
     resolve: {
-        extensions: ['', '.js', '.jsx']
+        extensions: ['', '.js', '.jsx', '.scss', '.css', '.png', '.jpg']
+    },
+    devServer: {
+        historyApiFallback: true,
+        contentBase: './',
+        port: serverPort
     }
 };
