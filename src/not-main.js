@@ -1,0 +1,1 @@
+module.exports = document.write("not main ... no I don't like main :(");
