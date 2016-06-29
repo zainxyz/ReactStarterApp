@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --hot --progress --colors",
-    "serve": "http-server -p 8008 .",
+    "serve": "http-server -p 9009 .",
     "build": "NODE_ENV=production webpack --progress -p",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

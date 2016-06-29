@@ -1,6 +1,6 @@
 const path = require('path'),
     webpack = require('webpack'),
-    serverPort = 8008;
+    serverPort = 9009;
 
 function getEntrySources(sources) {
     if (process.env.NODE_ENV !== 'production') {
@@ -19,7 +19,7 @@ module.exports = {
     },
     output: {
         path: path.join(__dirname, 'dist'),
-        publicPath: 'http://localhost:8008/',
+        publicPath: 'http://localhost:9009/',
         filename: 'public/app.js'
     },
     module: {
